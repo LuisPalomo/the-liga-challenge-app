@@ -1,37 +1,37 @@
-<div class="players-container mat-elevation-z8" *ngIf="dataSource">
-  <!--<md-table #table [dataSource]="dataSource" mdSort>
+<div class="players-container mat-elevation-z8">
+  <md-table #table [dataSource]="dataSource" mdSort>
 
     <ng-container cdkColumnDef="clubSymbol">
-      <md-header-cell *cdkHeaderCellDef></md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.clubSymbol}} </md-cell>
+      <md-header-cell *cdkHeaderCellDef class="players-header symbol-row"></md-header-cell>
+      <md-cell *cdkCellDef="let row" class="players-row symbol-row"><img class="table-symbol" src="{{row.clubSymbol}}" alt="..."></md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef md-sort-header> Name </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+      <md-header-cell *cdkHeaderCellDef md-sort-header class="players-header"> Name </md-header-cell>
+      <md-cell *cdkCellDef="let row" class="players-row"> {{row.name}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="nationality">
-      <md-header-cell *cdkHeaderCellDef md-sort-header> Nationality </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.nationality}} </md-cell>
+      <md-header-cell *cdkHeaderCellDef md-sort-header class="players-header"> Nationality </md-header-cell>
+      <md-cell *cdkCellDef="let row" class="players-row"> {{row.nationality}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="position">
-      <md-header-cell *cdkHeaderCellDef md-sort-header> Position </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.position}} </md-cell>
+      <md-header-cell *cdkHeaderCellDef md-sort-header class="players-header"> Position </md-header-cell>
+      <md-cell *cdkCellDef="let row" class="players-row"> {{row.position}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="jerseyNumber">
-      <md-header-cell *cdkHeaderCellDef md-sort-header> Number </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.jerseyNumber}} </md-cell>
+      <md-header-cell *cdkHeaderCellDef md-sort-header class="players-header"> Number </md-header-cell>
+      <md-cell *cdkCellDef="let row" class="players-row"> {{row.jerseyNumber}} </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="club">
-      <md-header-cell *cdkHeaderCellDef md-sort-header> Club </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.club}} </md-cell>
+      <md-header-cell *cdkHeaderCellDef md-sort-header class="players-header"> Club </md-header-cell>
+      <md-cell *cdkCellDef="let row" class="players-row"> {{row.club}} </md-cell>
     </ng-container>
 
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
     <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>-->
+  </md-table>
 </div>
