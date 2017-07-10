@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdSort } from '@angular/material';
+import { MdSort, MdPaginator } from '@angular/material';
 
 import { PlayerService } from 'app/player.service';
 import { PlayerDatabase } from 'app/player.database';
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   dataSource: PlayerDataSource | null;
 
   @ViewChild(MdSort) sort: MdSort;
+  @ViewChild(MdPaginator) paginator: MdPaginator;
 
   constructor(
     private playerService: PlayerService
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource = new PlayerDataSource(this.playerDatabase, this.sort);
+    this.dataSource = new PlayerDataSource(this.playerDatabase, this.sort, this.paginator);
   }
 
 }

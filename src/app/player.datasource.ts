@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk';
-import { MdSort } from '@angular/material';
+import { MdSort, MdPaginator } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
@@ -16,7 +16,7 @@ import { Player } from './player';
  * should be rendered.
  */
 export class PlayerDataSource extends DataSource<any> {
-  constructor(private playerDatabase: PlayerDatabase, private _sort: MdSort) {
+  constructor(private playerDatabase: PlayerDatabase, private sort: MdSort, private paginator: MdPaginator) {
     super();
   }
 
@@ -24,11 +24,14 @@ export class PlayerDataSource extends DataSource<any> {
   connect(): Observable<Player[]> {
     const displayDataChanges = [
       this.playerDatabase.dataChange,
-      this._sort.mdSortChange,
+      this.sort.mdSortChange,
+      this.paginator.page
     ];
 
     return Observable.merge(...displayDataChanges).map(() => {
-      return this.getSortedData();
+      // Grab the page's slice of data.
+      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+      return this.getSortedData().splice(startIndex, this.paginator.pageSize);
     });
   }
 
@@ -37,13 +40,13 @@ export class PlayerDataSource extends DataSource<any> {
   /** Returns a sorted copy of the database data. */
   getSortedData(): Player[] {
     const data = this.playerDatabase.data.slice();
-    if (!this._sort.active || this._sort.direction === '') { return data; }
+    if (!this.sort.active || this.sort.direction === '') { return data; }
 
     return data.sort((a, b) => {
       let propertyA: number|string = '';
       let propertyB: number|string = '';
 
-      switch (this._sort.active) {
+      switch (this.sort.active) {
         case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
         case 'nationality': [propertyA, propertyB] = [a.nationality, b.nationality]; break;
         case 'position': [propertyA, propertyB] = [a.position, b.position]; break;
@@ -54,7 +57,7 @@ export class PlayerDataSource extends DataSource<any> {
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
       const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
 
-      return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
+      return (valueA < valueB ? -1 : 1) * (this.sort.direction === 'asc' ? 1 : -1);
     });
   }
 }
