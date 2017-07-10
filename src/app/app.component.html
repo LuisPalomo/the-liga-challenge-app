@@ -1,6 +1,6 @@
 <div class="players-container mat-elevation-z8">
-  <md-table #table [dataSource]="dataSource" mdSort>
 
+  <md-table #table [dataSource]="dataSource" mdSort>
     <ng-container cdkColumnDef="clubSymbol">
       <md-header-cell *cdkHeaderCellDef class="players-header symbol-row"></md-header-cell>
       <md-cell *cdkCellDef="let row" class="players-row symbol-row"><img class="table-symbol" src="{{row.clubSymbol}}" alt="..."></md-cell>
@@ -36,9 +36,27 @@
   </md-table>
 
   <md-paginator #paginator
-                [length]="playerDatabase.data.length"
+                [length]="dataSource.actualDataLength"
                 [pageIndex]="0"
                 [pageSize]="25"
                 [pageSizeOptions]="[5, 10, 25, 100]">
   </md-paginator>
+
+  <div class="filter-header">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filterName placeholder="Filter name">
+    </md-input-container>
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filterNationality placeholder="Filter nationality">
+    </md-input-container>
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filterPosition placeholder="Filter position">
+    </md-input-container>
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filterNumber placeholder="Filter number">
+    </md-input-container>
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filterClub placeholder="Filter club">
+    </md-input-container>
+  </div>
 </div>

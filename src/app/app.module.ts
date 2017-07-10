@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpModule } from '@angular/http';
 import { CdkTableModule } from '@angular/cdk';
-import { MdTableModule, MdSortModule, MdPaginatorModule } from '@angular/material';
+import { MdTableModule, MdSortModule, MdPaginatorModule, MdInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
@@ -20,7 +20,8 @@ import { PlayerService } from './player.service';
     CdkTableModule,
     MdTableModule,
     MdSortModule,
-    MdPaginatorModule
+    MdPaginatorModule,
+    MdInputModule
   ],
   providers: [ PlayerService ],
   bootstrap: [ AppComponent ]
